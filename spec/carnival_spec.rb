@@ -16,6 +16,10 @@ describe Carnival do
       expect(jeffco_fair.rides).to be_instance_of Array
       expect(jeffco_fair.rides).to eq []
     end
+    it 'has attendees' do
+      jeffco_fair = Carnival.new('Jefferson County Fair')
+      expect(jeffco_fair.attendees).to eq []
+    end
   end
 
   describe '#add_ride' do
