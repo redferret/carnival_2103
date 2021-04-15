@@ -17,5 +17,11 @@ describe Attendee do
       attendee = Attendee.new('Bob Ross', 20)
       expect(attendee.spending_money).to eq 20
     end
+
+    it 'has interests' do
+      attendee = Attendee.new('Bob Ross', 20)
+      expect(attendee.interests).to be_instance_of Array
+      expect(attendee.interests).to eq []
+    end
   end
 end
