@@ -11,5 +11,10 @@ class Carnival
   end
 
   def recommend_rides(attendee)
+    attendee.interests.each_with_object([]) do |interest, recommended|
+      recommended << @rides.find do |ride|
+        interest == ride.name
+      end
+    end
   end
 end
