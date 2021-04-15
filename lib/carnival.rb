@@ -15,6 +15,16 @@ class Carnival
     @attendees << attendee
   end
 
+  def ticket_lottery_contestants(lottery_ride)
+    @attendees.find_all do |attendee|
+      desired_rides = recommend_rides(attendee)
+      cant_afford = desired_rides.find_all do |ride|
+        ride if attendee.spending_money < lottery_ride.cost
+      end
+      attendee if cant_afford.include?(lottery_ride)
+    end
+  end
+
   def attendees_by_ride_interest
     @rides.each_with_object({}) do |ride, hash|
       attendees = @attendees.find_all do |attendee|
