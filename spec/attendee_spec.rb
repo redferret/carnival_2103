@@ -34,4 +34,16 @@ describe Attendee do
       expect(attendee.interests).to eq expected_interests
     end
   end
+
+  describe '#recommended_rides' do
+    it 'iterates over each with their accumulated recommended rides' do
+      attendee = Attendee.new('Bob Ross', 20)
+      attendee.add_interest('Bumper Cars')
+      attendee.recommended_rides do |ride, recommended|
+        expect(ride).to eq 'Bumper Cars'
+        expect(recommended).to be_instance_of Array
+        expect(recommended).to eq []
+      end
+    end
+  end
 end
