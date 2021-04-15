@@ -39,12 +39,11 @@ describe Carnival do
       bob = instance_double('Attendee', name: 'Bob')
       sally = instance_double('Attendee', name: 'Sally')
 
-      allow(bob).to receive(:interests).and_return (
-        ['Ferris Wheel', 'Bumper Cars']
-      )
-      allow(sally).to receive(:interests).and_return (
-        ['The Free Faller']
-      )
+      bobs_recommended = []
+      sallys_recommended = []
+
+      allow(bob).to receive(:recommended_rides).and_yield('Bumper Cars', bobs_recommended).and_yield('Ferris Wheel', bobs_recommended)
+      allow(sally).to receive(:recommended_rides).and_yield('The Free Faller', sallys_recommended)
 
       ferris_wheel = instance_double('Ride', name: 'Ferris Wheel')
       bumper_cars = instance_double('Ride', name: 'Bumper Cars')
@@ -54,7 +53,7 @@ describe Carnival do
       jeffco_fair.add_ride(bumper_cars)
       jeffco_fair.add_ride(the_free_faller)
 
-      expected_rides_for_bob = [ferris_wheel, bumper_cars]
+      expected_rides_for_bob = [bumper_cars, ferris_wheel]
       expected_rides_for_sally = [the_free_faller]
 
       actual_rides_for_bob = jeffco_fair.recommend_rides(bob)
