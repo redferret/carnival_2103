@@ -16,6 +16,12 @@ class Carnival
   end
 
   def attendees_by_ride_interest
+    @rides.each_with_object({}) do |ride, hash|
+      attendees = @attendees.find_all do |attendee|
+        attendee.interests.include?(ride.name)
+      end
+      hash[ride] = attendees
+    end
   end
 
   def recommend_rides(attendee)
