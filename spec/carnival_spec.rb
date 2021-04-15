@@ -36,6 +36,20 @@ describe Carnival do
     end
   end
 
+  describe '#admit' do
+    it 'admits attendee' do
+      jeffco_fair = Carnival.new("Jefferson County Fair")
+
+      jeffco_fair.admit(bob)
+      jeffco_fair.admit(sally)
+      jeffco_fair.admit(johnny)
+
+      expected_attendees = [bob, sally, johnny]
+      
+      expect(jeffco_fair.attendees).to eq expected_attendees
+    end
+  end
+
   describe '#recommend_rides' do
     it 'returns of recommended rides' do
       jeffco_fair = Carnival.new('Jefferson County Fair')
