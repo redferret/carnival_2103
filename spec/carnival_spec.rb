@@ -17,4 +17,18 @@ describe Carnival do
       expect(jeffco_fair.rides).to eq []
     end
   end
+
+  describe '#add_ride' do
+    it 'adds rides to the carnival' do
+      jeffco_fair = Carnival.new('Jefferson County Fair')
+      mock_ride1 = instance_double('Ride', name: 'Ferris Wheel')
+      mock_ride2 = instance_double('Ride', name: 'Bumper Cars')
+
+      jeffco_fair.add_ride(mock_ride1)
+      jeffco_fair.add_ride(mock_ride2)
+
+      expected_rides = [mock_ride1, mock_ride2]
+      expect(jeffco_fair.rides).to eq expected_rides
+    end
+  end
 end
