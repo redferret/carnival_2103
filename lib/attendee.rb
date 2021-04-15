@@ -10,4 +10,10 @@ class Attendee
   def add_interest(interest)
     @interests << interest
   end
+
+  def recommended_rides
+    @interests.each_with_object([]) do |ride, my_recommended|
+      yield(ride, my_recommended)
+    end
+  end
 end
