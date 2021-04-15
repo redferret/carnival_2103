@@ -6,4 +6,8 @@ class Attendee
     @spending_money = money
     @interests = []
   end
+
+  def add_interest(interest)
+    @interests << interest
+  end
 end
