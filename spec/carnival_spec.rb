@@ -116,7 +116,7 @@ describe Carnival do
 
       expected_contestants = [bob, johnny]
 
-      expect(jeffco_fair.ticket_lottery_contestants).to eq expected_contestants
+      expect(jeffco_fair.ticket_lottery_contestants(bumper_cars)).to eq expected_contestants
     end
   end
 
