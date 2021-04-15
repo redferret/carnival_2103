@@ -12,5 +12,10 @@ describe Attendee do
       attendee = Attendee.new('Bob Ross', 20)
       expect(attendee.name).to eq 'Bob Ross'
     end
+
+    it 'has money to spend' do
+      attendee = Attendee.new('Bob Ross', 20)
+      expect(attendee.spending_money).to eq 20
+    end
   end
 end
