@@ -15,6 +15,9 @@ class Carnival
     @attendees << attendee
   end
 
+  def attendees_by_ride_interest
+  end
+
   def recommend_rides(attendee)
     attendee.recommended_rides do |interested_ride, recommended|
       recommended << @rides.find do |ride|
