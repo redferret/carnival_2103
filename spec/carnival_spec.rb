@@ -40,12 +40,16 @@ describe Carnival do
     it 'admits attendee' do
       jeffco_fair = Carnival.new("Jefferson County Fair")
 
+      bob = Attendee.new("Bob", 0)
+      sally = Attendee.new('Sally', 20)
+      johnny = Attendee.new("Johnny", 5)
+
       jeffco_fair.admit(bob)
       jeffco_fair.admit(sally)
       jeffco_fair.admit(johnny)
 
       expected_attendees = [bob, sally, johnny]
-      
+
       expect(jeffco_fair.attendees).to eq expected_attendees
     end
   end
