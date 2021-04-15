@@ -24,4 +24,14 @@ describe Attendee do
       expect(attendee.interests).to eq []
     end
   end
+
+  describe '#add_interest' do
+    it 'adds a new interest to the attendee' do
+      attendee = Attendee.new('Bob Ross', 20)
+      attendee.add_interest('Bumper Cars')
+      attendee.add_interest('Ferris Wheel')
+      expected_interests = ['Bumper Cars', 'Ferris Wheel']
+      expect(attendee.interests).to eq expected_interests
+    end
+  end
 end
