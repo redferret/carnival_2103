@@ -56,6 +56,7 @@ describe Carnival do
 
   describe '#attendees_by_ride_interest' do
     it 'returns hash with keys as rides and array of attendees' do
+      jeffco_fair = Carnival.new("Jefferson County Fair")
       ferris_wheel = Ride.new({name: 'Ferris Wheel', cost: 0})
       bumper_cars = Ride.new({name: 'Bumper Cars', cost: 10})
       scrambler = Ride.new({name: 'Scrambler', cost: 15})
@@ -73,6 +74,10 @@ describe Carnival do
 
       johnny = Attendee.new("Johnny", 5)
       johnny.add_interest('Bumper Cars')
+
+      jeffco_fair.admit(bob)
+      jeffco_fair.admit(sally)
+      jeffco_fair.admit(johnny)
 
       expected_hash = {
         ferris_wheel => [bob],
