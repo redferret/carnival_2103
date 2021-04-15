@@ -31,4 +31,37 @@ describe Carnival do
       expect(jeffco_fair.rides).to eq expected_rides
     end
   end
+
+  describe '#recommend_rides' do
+    it 'returns of recommended rides' do
+      jeffco_fair = Carnival.new('Jefferson County Fair')
+
+      bob = instance_double('Attendee', name: 'Bob')
+      sally = instance_double('Attendee', name: 'Sally')
+
+      allow(bob).to receive(:interests).and_return (
+        ['Ferris Wheel', 'Bumper Cars']
+      )
+      allow(sally).to receive(:interests).and_return (
+        ['The Free Faller']
+      )
+
+      ferris_wheel = instance_double('Ride', name: 'Ferris Wheel')
+      bumper_cars = instance_double('Ride', name: 'Bumper Cars')
+      the_free_faller = instance_double('Ride', name: 'The Free Faller')
+
+      jeffco_fair.add_ride(ferris_wheel)
+      jeffco_fair.add_ride(bumper_cars)
+      jeffco_fair.add_ride(the_free_faller)
+
+      expected_rides_for_bob = [ferris_wheel, bumper_cars]
+      expected_rides_for_sally = [the_free_faller]
+
+      actual_rides_for_bob = jeffco_fair.recommend_rides(bob)
+      actual_rides_for_sally = jeffco_fair.recommend_rides(sally)
+
+      expect(actual_rides_for_bob).to eq expected_rides_for_bob
+      expect(actual_rides_for_sally).to eq expected_rides_for_sally
+    end
+  end
 end
